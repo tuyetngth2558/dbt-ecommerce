@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_users       
+    description: "Bảng thông tin người dùng đã làm sạch."
+    columns:
+      - name: user_id
+        description: "Mã định danh duy nhất của khách hàng (Primary Key)."
+        tests:
+          - unique        # Luật 1: Không được trùng
+          - not_null      # Luật 2: Không được để trống
+
+      - name: gender
+        description: "Giới tính khách hàng."
+        tests:
+          - accepted_values: # Luật 3: Chỉ chấp nhận các giá trị này
+              values: ['M', 'F']
+              
+      - name: age
+        description: "Tuổi của khách hàng tại thời điểm đăng ký."
